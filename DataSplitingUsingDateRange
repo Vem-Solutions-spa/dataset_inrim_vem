@@ -1,0 +1,8 @@
+usr@Markov:~/DataSet/VEM_SAMPLE$ date;  egrep "[0-9]{7},2018-01-(19|20|21|22|23) " top_2018_01_01.csv > filtered_top_2018_01_01.csv ; date 
+Sun Jul  8 13:45:46 CEST 2018
+Sun Jul  8 13:50:24 CEST 2018
+usr@Markov:~/DataSet/VEM_SAMPLE$ ls -l filtered_top_2018_01_01.csv 
+-rw-r--r-- 1 usr usr 1284577105 Jul  8 13:50 filtered_top_2018_01_01.csv
+
+
+
