@@ -78,19 +78,22 @@ synchronized_df = fibre_noise_mean.merge(vem_traffic_sum, how='outer')
 # plotting different part of the synchronized file
 import matplotlib.pyplot as plt
 
-fig, axes = plt.subplots(nrows=4, ncols=1, figsize=(5,15))
+fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(15,15))
 
-synchronized_df.plot(x='minute', y='mva', style='k.', ax=axes[0])
-synchronized_df.plot(x='minute', y='counter', style='k.', ax=axes[1])
-synchronized_df.plot(x='mva', y='counter', style='k.', ax=axes[2])
+synchronized_df.plot(x='minute', y='mva', style='ok', ax=axes[0,0], legend = False)
+synchronized_df.plot(x='minute', y='counter', style='k.', ax=axes[0,1], legend = False)
+synchronized_df.plot(x='mva', y='counter', style='k.', ax=axes[1,0], legend = False)
 
 #plot cross-correlation
 synchronized_df = synchronized_df.fillna(value = 0.) #send nan values due to the moving average to 0 and also due to merge
-axes[3].xcorr(synchronized_df.mva.values, synchronized_df.counter.values, \
+axes[1,1].xcorr(synchronized_df.mva.values, synchronized_df.counter.values, \
   usevlines=True, maxlags=10, normed=True, lw=2)
 
 
-
-
-
-
+axes[0,0].set_ylabel('Fibre Noise')
+axes[0,1].set_ylabel('Traffic')
+axes[1,0].set_xlabel('Fibre Noise')
+axes[1,0].set_ylabel('Traffic')
+axes[1,1].set_xlabel('Lag')
+axes[1,1].set_ylabel('Cross Correlation between Fibre Noise and Traffic')
+fig.suptitle('28th Jan')
